@@ -1,0 +1,5 @@
+# ignore c++ .o files
+*.o
+
+# ignore executables
+*.exe
