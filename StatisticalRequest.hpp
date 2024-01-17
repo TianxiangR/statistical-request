@@ -1,5 +1,10 @@
+#ifndef STATISTICALREQUEST_HPP
+#define STATISTICALREQUEST_HPP
 #include "Request.hpp"
+#include "Statistics.hpp"
 #include <chrono>
+#include <vector>
+#include <unordered_map>
 
 /**
  * @brief a request class that does statistical analysis: mean response time,
@@ -9,16 +14,19 @@
 class StatisticalRequest : public Request
 {
 private:
-  size_t m_processedRequests = 0;
-  std::chrono::microseconds m_totalResponseTime = std::chrono::microseconds(0);
+  std::unordered_map<std::string, Statistics> m_statistics;
   std::chrono::high_resolution_clock::time_point m_startTime;
+  std::string m_uri;
 
 public:
   StatisticalRequest() : Request() {}
   virtual ~StatisticalRequest() = default;
-  int64_t getMeanResponseTime() const;
+  double getMeanResponseTime(const std::string &uri) const;
+  double getStandardDeviation(const std::string &uri) const;
 
 protected:
   void start(const std::string &uri) override;
   void finish() override;
 };
+
+#endif // STATISTICALREQUEST_HPP
