@@ -7,21 +7,35 @@
 #include <unordered_map>
 
 /**
- * @brief a request class that does statistical analysis: mean response time,
- *       standard deviation, and normal histogram.
+ *  a request class that does statistical analysis: mean response time,
+ *  standard deviation, and normal histogram.
  *
  */
 class StatisticalRequest : public Request
 {
 private:
-  std::unordered_map<std::string, Statistics> m_statistics;
-  std::chrono::high_resolution_clock::time_point m_startTime;
-  std::string m_uri;
+  std::unordered_map<std::string, Statistics> m_statistics;   // the response time statistics for each uri
+  std::chrono::high_resolution_clock::time_point m_startTime; // the start time of the current processing
+  std::string m_uri;                                          // the uri being currently processeds
 
 public:
   StatisticalRequest() : Request() {}
-  virtual ~StatisticalRequest() = default;
+  ~StatisticalRequest() = default;
+
+  /**
+   * Get the mean response time in microseconds for a given uri
+   *
+   * @param [in] uri The URI of the request endpoint
+   * @return the mean response time in microseconds
+   */
   double getMeanResponseTime(const std::string &uri) const;
+
+  /**
+   * Get the standard deviation of the response time in microseconds for a given uri
+   *
+   * @param [in] uri The URI of the request endpoint
+   * @return the standard deviation of the response time in microseconds
+   */
   double getStandardDeviation(const std::string &uri) const;
 
 protected:
