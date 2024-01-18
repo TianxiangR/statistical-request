@@ -69,6 +69,8 @@ void describe(const std::string &description, const std::function<void()> &testF
 {
   std::cout << description << std::endl;
   testFunction();
+  std::cout << "------------------------------------------------------------------------" << std::endl
+            << std::endl;
 }
 
 #endif // TEST_UTILS
