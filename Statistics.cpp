@@ -2,8 +2,6 @@
 #include <cmath>
 #include <algorithm>
 #include <stdexcept>
-#include <deque>
-#include <tuple>
 
 Statistics::Statistics(const int &bins)
     : m_max_bins(bins)
