@@ -1,5 +1,9 @@
 # Statistical Request - Enhanced Request Handling
 
+## GitHub Repo
+
+[https://github.com/TianxiangR/statistical-request](https://github.com/TianxiangR/statistical-request)
+
 ## About the Project
 
 The Astiri platform's Product Manager, responding to user feedback, aims to bolster the system's capabilities in understanding request response times. The focus is on recording response times, calculating the mean response time, determining the standard deviation of response times, and generating a normalized histogram on a per URI basis.
@@ -56,7 +60,7 @@ Sample output:
 0.75-1.00 | * * * * * * * * * *
 ```
 
-## Test
+## Testing
 
 The unit tests are in `test.cpp`.
 
