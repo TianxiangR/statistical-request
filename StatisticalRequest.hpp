@@ -24,7 +24,7 @@ private:
     int m_max_bins;
 
 public:
-    StatisticalRequest(const int &bins) : Request(), m_max_bins(bins) {}
+    StatisticalRequest(const int &max_bins) : Request(), m_max_bins(max_bins) {}
     ~StatisticalRequest() = default;
 
     /**
