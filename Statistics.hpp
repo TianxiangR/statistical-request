@@ -1,18 +1,25 @@
 #ifndef STATISTICS_HPP
 #define STATISTICS_HPP
 #include <vector>
+#include <string>
 
 class Statistics
 {
 private:
-  std::vector<double> m_data;
+    std::vector<double> m_data;
+    int m_max_bins;
+    std::string doubleToTwoDecimalPlaces(const double &value) const;
 
 public:
-  double getMean() const;
+    Statistics(const int &bins = 10);
 
-  double getStandardDeviation() const;
+    double getMean() const;
 
-  void addData(const double &datum);
+    double getStandardDeviation() const;
+
+    std::string getNormalizedHistogram() const;
+
+    void addData(const double &datum);
 };
 
 #endif // STATISTICS_HPP

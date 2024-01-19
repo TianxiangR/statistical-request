@@ -27,50 +27,74 @@
 
 void assertTrue(const bool &actual)
 {
-  if (!actual)
-    throw std::runtime_error("Expected: " + std::string(CYAN) + "true" + RESET + "\nReceived: " + std::string(CYAN) + "false" + RESET + "\n");
+    if (!actual)
+        throw std::runtime_error("Expected: " + std::string(CYAN) + "true" +
+                                 RESET + "\nReceived: " + std::string(CYAN) + "false" + RESET + "\n");
 }
 
 void assertFalse(const bool &actual)
 {
-  if (actual)
-    throw std::runtime_error("Expected: " + std::string(CYAN) + "false" + RESET + "\nReceived: " + std::string(CYAN) + "true" + RESET + "\n");
+    if (actual)
+        throw std::runtime_error("Expected: " + std::string(CYAN) + "false" +
+                                 RESET + "\nReceived: " + std::string(CYAN) + "true" + RESET + "\n");
 }
 
 template <typename T>
 void assertEqual(const T &actual, const T &expected)
 {
-  if (actual != expected)
-    throw std::runtime_error("Expected: " + std::string(CYAN) + std::to_string(expected) + RESET + "\nReceived: " + std::string(CYAN) + std::to_string(actual) + RESET + "\n");
+    if (actual != expected)
+        throw std::runtime_error("Expected: " + std::string(CYAN) +
+                                 std::to_string(expected) + RESET + "\nReceived: " +
+                                 std::string(CYAN) + std::to_string(actual) + RESET + "\n");
+}
+
+template <>
+void assertEqual(const std::string &actual, const std::string &expected)
+{
+    if (actual != expected)
+        throw std::runtime_error("Expected: " + std::string(CYAN) +
+                                 expected + RESET + "\nReceived: " +
+                                 std::string(CYAN) + actual + RESET + "\n");
 }
 
 template <typename T>
 void assertNotEqual(const T &actual, const T &expected)
 {
-  if (actual == expected)
-    throw std::runtime_error("Expected " + std::string(CYAN) + "not " + std::to_string(expected) + RESET + "\nReceived: " + std::string(CYAN) + std::to_string(actual) + RESET + "\n");
+    if (actual == expected)
+        throw std::runtime_error("Expected " + std::string(CYAN) +
+                                 "not " + std::to_string(expected) + RESET + "\nReceived: " +
+                                 std::string(CYAN) + std::to_string(actual) + RESET + "\n");
+}
+
+template <>
+void assertNotEqual(const std::string &actual, const std::string &expected)
+{
+    if (actual == expected)
+        throw std::runtime_error("Expected " + std::string(CYAN) +
+                                 "not " + expected + RESET + "\nReceived: " +
+                                 std::string(CYAN) + actual + RESET + "\n");
 }
 
 void test(const std::string &testName, const std::function<void()> &testFunction)
 {
-  try
-  {
-    testFunction();
-    std::cout << GREEN << "PASSED: " << LIGHTGREY << testName << RESET << std::endl;
-  }
-  catch (const std::exception &e)
-  {
-    std::cout << RED << "FAILED: " << RESET << testName << std::endl;
-    std::cout << e.what() << std::endl;
-  }
+    try
+    {
+        testFunction();
+        std::cout << GREEN << "PASSED: " << LIGHTGREY << testName << RESET << std::endl;
+    }
+    catch (const std::exception &e)
+    {
+        std::cout << RED << "FAILED: " << RESET << testName << std::endl;
+        std::cout << e.what() << std::endl;
+    }
 }
 
 void describe(const std::string &description, const std::function<void()> &testFunction)
 {
-  std::cout << description << std::endl;
-  testFunction();
-  std::cout << "------------------------------------------------------------------------" << std::endl
-            << std::endl;
+    std::cout << description << std::endl;
+    testFunction();
+    std::cout << "------------------------------------------------------------------------\n"
+              << std::endl;
 }
 
 #endif // TEST_UTILS
