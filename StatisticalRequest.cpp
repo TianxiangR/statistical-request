@@ -1,5 +1,12 @@
 #include "StatisticalRequest.hpp"
 #include <cmath>
+#include <stdexcept>
+
+StatisticalRequest::StatisticalRequest(const int &max_bins) : Request(), m_max_bins(max_bins)
+{
+    if (m_max_bins < 1)
+        throw std::invalid_argument("bins must be greater than 0");
+}
 
 void StatisticalRequest::start(const std::string &uri)
 {
