@@ -36,7 +36,7 @@ void Statistics::addData(const double &datum)
     m_data.push_back(datum);
 }
 
-std::string Statistics::doubleToTwoDecimalPlaces(const double &value) const
+std::string Statistics::doubleToTwoDecimalPlaces(const double &value)
 {
     std::string str = std::to_string(value);
     auto pos = str.find('.');
