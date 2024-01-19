@@ -31,7 +31,7 @@ StatisticalRequest statisticalRequest(4);
 for (int i = 0; i < 100; i++)
     statisticalRequest.process("uri1");
 
-double standardDeviation = statisticalRequest.getStan    dardDeviation("uri1")
+double standardDeviation = statisticalRequest.getStandardDeviation("uri1")
 ```
 
 #### Retreiving Normalized Hitogram of Response Times

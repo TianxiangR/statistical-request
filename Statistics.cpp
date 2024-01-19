@@ -1,9 +1,14 @@
 #include "Statistics.hpp"
 #include <cmath>
 #include <algorithm>
+#include <stdexcept>
 
 Statistics::Statistics(const int &bins)
-    : m_max_bins(bins) {}
+    : m_max_bins(bins)
+{
+    if (m_max_bins < 1)
+        throw std::invalid_argument("bins must be greater than 0");
+}
 
 double Statistics::getMean() const
 {
@@ -67,6 +72,15 @@ std::string Statistics::getNormalizedHistogram() const
             max = datum;
     }
 
+    /**
+     * it is guaranteed that there will be no leading or trailing zeros,
+     * since the data are normalized.
+     *
+     * xmin-normalized = (xmin - xmin) / (xmax - xmin) = 0
+     * xmax-normalized = (xmax - xmin) / (xmax - xmin) = 1
+     *
+     * so the first bin and the last bin will always be non-empty
+     */
     double range = max - min;
     std::vector<double> normalized_data;
 
