@@ -45,13 +45,18 @@ std::string Statistics::doubleToTwoDecimalPlaces(const double &value)
 {
     std::string str = std::to_string(value);
     auto pos = str.find('.');
+
+    // if the string does not contain a decimal point, add one
     if (pos == std::string::npos)
         return str + ".00";
 
     auto decimalPlaces = str.size() - pos - 1;
+
+    // if the string contains one decimal place, add one more
     if (decimalPlaces == 1)
         return str + "0";
 
+    // otherwise, return the string truncated to two decimal places
     return str.substr(0, pos + 3);
 }
 
