@@ -4,6 +4,10 @@
 
 The Astiri platform's Product Manager, responding to user feedback, aims to bolster the system's capabilities in understanding request response times. The focus is on recording response times, calculating the mean response time, determining the standard deviation of response times, and generating a normalized histogram on a per URI basis.
 
+## UML Class Diagram
+
+![UML Class](./docs/UML%20class%20(3).png)
+
 ## Usage
 
 #### Recording Response Times
